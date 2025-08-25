@@ -14,9 +14,6 @@ int main() {
     float pib1;
     float densidadepopulacional1, pibpercapta1;
     float superpoder1;
-    int escolha1;
-    int escolha2;
-    int resultado1, resultado2;
 
     // Variáveis da segunda carta
     char estado2, codigo2[20], nome2[50];
@@ -26,6 +23,11 @@ int main() {
     float pib2;
     float densidadepopulacional2, pibpercapta2;
     float superpoder2;
+
+    // Escolhas e resultados
+    int escolha1, escolha2;
+    int resultado1 = 0, resultado2 = 0;
+    float soma1 = 0, soma2 = 0;
 
     // Entrada de Dados - Carta 1
     printf("\n=== Carta 1 ===\n");
@@ -115,76 +117,100 @@ int main() {
          printf("Densidade Populacional: %.2f hab/km² \n", densidadepopulacional2);
          printf("PIB per Capita: %.2f reais \n", pibpercapta2);
 
-                //Menu de Comparação de cartas com escolha do primeiro atributo
-                 printf("\n=== Comparação de cartas ===\n");
-                 printf("Escolha o primeiro atributo para comparar\n");
-                 printf("1. População\n");
-                 printf("2. Aréa\n");
-                 printf("3. PIB (Produto Interno Bruto)\n");
-                 printf("4. Numeros de Pontos Turisticos\n");
-                 printf("5. Densidade Demografica\n");
-                 printf("Atributo Numero: ");
-                 scanf("%d", &escolha1);
+           // Menu do segundo atributo (dinâmico)
+           switch (escolha1) {
+           case 1:
+                resultado1 = populacao1 > populacao2 ? 1 : 2;
+                soma1 += populacao1;
+                soma2 += populacao2;
+           break;
+           case 2:
+                resultado1 = area1 > area2 ? 1 : 2;
+                soma1 += area1;
+                soma2 += area2;
+           break;
+           case 3:
+                resultado1 = pib1 > pib2 ? 1 : 2;
+                soma1 += pib1;
+                soma2 += pib2;
+           break;
+           case 4:
+                resultado1 = pontosturisticos1 > pontosturisticos2 ? 1 : 2;
+                soma1 += pontosturisticos1;
+                soma2 += pontosturisticos2;
+           break;
+           case 5:
+                resultado1 = densidadepopulacional1 < densidadepopulacional2 ? 1 : 2;
+                soma1 += densidadepopulacional1;
+                soma2 += densidadepopulacional2;
+           break;
+           case 6:
+                resultado1 = pibpercapta1 > pibpercapta2 ? 1 : 2;
+                soma1 += pibpercapta1;
+                soma2 += pibpercapta2;
+           break;
+           default:
+                printf("Opção inválida!\n");
+           break;
+           return 0;
+    }
 
-                // Logica da comparação de cartas com switch e operador ternario
-                switch (escolha1){
-                case 1:
-                     resultado1 = populacao1 > populacao2 ? 1 : 0;
-                break;
-                case 2:
-                     resultado1 = area1 > area2 ? 1 : 0;
-                break;
-                case 3:
-                     resultado1 = pib1 > pib2 ? 1 : 0;
-                break;
-                case 4:
-                     resultado1 = pontosturisticos1 >pontosturisticos2 ? 1 : 0;
-                break;
-                case 5:
-                     resultado1 = densidadepopulacional1 < densidadepopulacional2 ? 1 : 0;
-                break;
-                default:
-                     printf("Opção invalida !!");
-                break;
-                    }
+    // Menu do segundo atributo (dinâmico)
+    printf("\nEscolha o segundo atributo para comparação (não pode repetir o primeiro):\n");
+    if (escolha1 != 1) printf("1. População\n");
+    if (escolha1 != 2) printf("2. Área\n");
+    if (escolha1 != 3) printf("3. PIB\n");
+    if (escolha1 != 4) printf("4. Pontos Turísticos\n");
+    if (escolha1 != 5) printf("5. Densidade Populacional\n");
+    if (escolha1 != 6) printf("6. PIB per Capita\n");
+    scanf("%d", &escolha2);
 
-                 //Menu de Comparação de cartas com escolha do segundo atributo
-                 printf("\n=== Comparação de cartas ===\n");
-                 printf("Escolha o segundo atributo para comparar\n");
-                 printf("1. População\n");
-                 printf("2. Aréa\n");
-                 printf("3. PIB (Produto Interno Bruto)\n");
-                 printf("4. Numeros de Pontos Turisticos\n");
-                 printf("5. Densidade Demografica\n");
-                 printf("Atributo Numero: ");
-                 scanf("%d", &escolha2);
+    switch (escolha2) {
+        case 1:
+            resultado2 = populacao1 > populacao2 ? 1 : 2;
+            soma1 += populacao1;
+            soma2 += populacao2;
+            break;
+        case 2:
+            resultado2 = area1 > area2 ? 1 : 2;
+            soma1 += area1;
+            soma2 += area2;
+            break;
+        case 3:
+            resultado2 = pib1 > pib2 ? 1 : 2;
+            soma1 += pib1;
+            soma2 += pib2;
+            break;
+        case 4:
+            resultado2 = pontosturisticos1 > pontosturisticos2 ? 1 : 2;
+            soma1 += pontosturisticos1;
+            soma2 += pontosturisticos2;
+            break;
+        case 5:
+            resultado2 = densidadepopulacional1 < densidadepopulacional2 ? 1 : 2;
+            soma1 += densidadepopulacional1;
+            soma2 += densidadepopulacional2;
+            break;
+        case 6:
+            resultado2 = pibpercapta1 > pibpercapta2 ? 1 : 2;
+            soma1 += pibpercapta1;
+            soma2 += pibpercapta2;
+            break;
+        default:
+            printf("Opção inválida!\n");
+            return 0;
+    }
 
-                //Mensagem caso os atributos escolhidos forem iguais
-                 if (escolha1 == escolha2){
-                    printf("\nOs atributos não podem ser os mesmos !!\n");
-                 }else{
-                // Logica da comparação de cartas com switch e if-else
-                    switch (escolha2){
-                case 1:
-                     resultado2 = populacao2 > populacao1 ? 1 : 0;
-                break;
-                case 2:
-                     resultado2 = area2 > area1 ? 1 : 0;
-                break;
-                case 3:
-                     resultado2 = pib2 > pib1 ? 1 : 0;
-                break;
-                case 4:
-                     resultado2 = pontosturisticos2 > pontosturisticos1 ? 1 : 0;
-                break;
-                case 5:
-                     resultado2 = densidadepopulacional2 < densidadepopulacional1 ? 1 : 0;
-                break;
-                default:
-                     printf("Opção invalida !!");
-                break;
-                    }
-                 }
+    // Resultado final
+    printf("\n--- RESULTADO FINAL ---\n");
+    printf("%s (soma=%.2f) x %s (soma=%.2f)\n", nome1, soma1, nome2, soma2);
 
-                return 0;
+    if (soma1 > soma2)
+        printf("Vencedor: %s\n", nome1);
+    else if (soma2 > soma1)
+        printf("Vencedor: %s\n", nome2);
+    else
+        printf("Empate!\n");
+
+      return 0;
 }
